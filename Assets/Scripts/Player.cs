@@ -1,17 +1,22 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] InputActions playerInputActions;
     [SerializeField] int playerSpeed;
     [SerializeField] float hLim;
     [SerializeField] float VLim;
     Rigidbody2D rb;
     SmudgeManager smudgeManager;
+    Vector2 playerMove;
+    private 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         smudgeManager = GameObject.Find("SmudgeManager").GetComponent<SmudgeManager>();
+
+        playerInputActions.Player.MoveHorizontal.performed += OnMoveHorizontal;
     }
 
     void Update()
@@ -21,41 +26,43 @@ public class Player : MonoBehaviour
 
     void PlayerMovement()
     {
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        transform.position += new Vector3(input.x, input.y, 0) * playerSpeed * Time.deltaTime;
-        transform.position = new Vector3 (transform.position.x, Mathf.Clamp(transform.position.y, -VLim, VLim), 0);
-        transform.position = new Vector3 (Mathf.Clamp(transform.position.x, -hLim, hLim), transform.position.y, 0);
+        // Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        transform.position += new Vector3(playerMove.x, playerMove.y, 0) * playerSpeed * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -VLim, VLim), 0);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -hLim, hLim), transform.position.y, 0);
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("FallingObject"))
         {
             Debug.Log("caiu algo na minha cabeça");
         }
-        
     }
-    void OnTriggerStay2D(Collider2D collider) 
+    void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.CompareTag("Smudge"))
         {
-            if(Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
-                Debug.Log("limpei uma janelinha");   
-                smudgeManager.CreateSmudge(); 
+                Debug.Log("limpei uma janelinha");
+                smudgeManager.CreateSmudge();
                 Destroy(collider.gameObject);
-            }    
+            }
         }
     }
 
-    void OnMoveHorizontal(InputAction.CallbackContext context)
+    public void OnMoveHorizontal(CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        transform.position += new Vector3(input.x, 0, 0) * playerSpeed * Time.deltaTime;
-        transform.position = new Vector3 (Mathf.Clamp(transform.position.x, -hLim, hLim), transform.position.y, 0);
+        playerMove = new Vector2(context.ReadValue<float>(), playerMove.y);
     }
 
-    void OnInteract(InputAction.CallbackContext context)
+    public void OnMoveVertical(CallbackContext context)
+    {
+        playerMove = new Vector2(playerMove.x, context.ReadValue<float>());
+    }
+
+    public void OnInteract(CallbackContext context)
     {
         Debug.Log("Interagindo");
     }
