@@ -43,9 +43,7 @@ public class Player : MonoBehaviour
                 Debug.Log("limpei uma janelinha");   
                 smudgeManager.CreateSmudge(); 
                 Destroy(collider.gameObject);
-            }
-                
+            }    
         }
     }
-    
 }
