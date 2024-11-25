@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Projeto Senac Trabalho em Altura.sln"
+    "dotnet.defaultSolution": "Projeto-Senac-Trabalho-em-Altura.sln"
 }

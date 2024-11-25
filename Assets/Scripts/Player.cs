@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -46,6 +47,18 @@ public class Player : MonoBehaviour
             }
                 
         }
+    }
+
+    void OnMoveHorizontal(InputAction.CallbackContext context)
+    {
+        Vector2 input = context.ReadValue<Vector2>();
+        transform.position += new Vector3(input.x, 0, 0) * playerSpeed * Time.deltaTime;
+        transform.position = new Vector3 (Mathf.Clamp(transform.position.x, -hLim, hLim), transform.position.y, 0);
+    }
+
+    void OnInteract(InputAction.CallbackContext context)
+    {
+        Debug.Log("Interagindo");
     }
     
 }
