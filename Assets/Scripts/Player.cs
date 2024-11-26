@@ -12,11 +12,14 @@ public class Player : MonoBehaviour
     // chamando outros scriptsVV
 
     SmudgeManager smudgeManager;
-    Vector2 playerMove;
+    Score score;
+
+    // nao chamando scriptoss
+    
 
     private List<GameObject> smudges = new List<GameObject>();
 
-    Score score;
+    
     
     void Start()
     {
@@ -66,6 +69,7 @@ public class Player : MonoBehaviour
         {
             smudgeManager.CreateSmudge();
             Destroy(smudge);
+            score.ScoreOnePoint();
         }
     }
 }
