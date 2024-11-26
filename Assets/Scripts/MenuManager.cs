@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using DG.Tweening;
-using Unity.Mathematics;
 
 public class MenuManager : MonoBehaviour
 {
@@ -25,4 +24,8 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void MoveCloud()
+    {
+
+    }
 }
