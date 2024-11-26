@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "CleanSmudge",
                     "type": "Button",
                     "id": "cda862cf-9f9f-462d-9c54-5f2b67f24599",
                     "expectedControlType": "",
@@ -195,7 +195,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "CleanSmudge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -206,7 +206,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "CleanSmudge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
