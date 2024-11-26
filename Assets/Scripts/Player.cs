@@ -8,13 +8,18 @@ public class Player : MonoBehaviour
     [SerializeField] float hLim;
     [SerializeField] float VLim;
     Rigidbody2D rb;
-    SmudgeManager smudgeManager;
     Vector2 playerMove;
-    private 
+
+    // chamando outros scriptsVV
+
+    SmudgeManager smudgeManager;
+    Score score;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         smudgeManager = GameObject.Find("SmudgeManager").GetComponent<SmudgeManager>();
+        score = GameObject.Find("ScoreManager").GetComponent<Score>();
 
         playerInputActions.Player.MoveHorizontal.performed += OnMoveHorizontal;
     }
