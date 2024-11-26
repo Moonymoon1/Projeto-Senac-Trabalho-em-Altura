@@ -1,10 +1,9 @@
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
-{
-    [SerializeField] InputActions playerInputActions;
-    [SerializeField] int playerSpeed;
+{    [SerializeField] int playerSpeed;
     [SerializeField] float hLim;
     [SerializeField] float VLim;
     Rigidbody2D rb;
@@ -13,6 +12,10 @@ public class Player : MonoBehaviour
     // chamando outros scriptsVV
 
     SmudgeManager smudgeManager;
+    Vector2 playerMove;
+
+    private List<GameObject> smudges = new List<GameObject>();
+
     Score score;
     
     void Start()
@@ -20,8 +23,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         smudgeManager = GameObject.Find("SmudgeManager").GetComponent<SmudgeManager>();
         score = GameObject.Find("ScoreManager").GetComponent<Score>();
-
-        playerInputActions.Player.MoveHorizontal.performed += OnMoveHorizontal;
     }
 
     void Update()
@@ -31,30 +32,22 @@ public class Player : MonoBehaviour
 
     void PlayerMovement()
     {
-        // Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         transform.position += new Vector3(playerMove.x, playerMove.y, 0) * playerSpeed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -VLim, VLim), 0);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -hLim, hLim), transform.position.y, 0);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (other.CompareTag("FallingObject"))
-        {
+        if (collider.CompareTag("FallingObject"))
             Debug.Log("caiu algo na minha cabeça");
-        }
+
+        if (collider.CompareTag("Smudge")) smudges.Add(collider.gameObject);
+
     }
-    void OnTriggerStay2D(Collider2D collider)
+    public void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.CompareTag("Smudge"))
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                Debug.Log("limpei uma janelinha");
-                smudgeManager.CreateSmudge();
-                Destroy(collider.gameObject);
-            }
-        }
+        if (collider.CompareTag("Smudge")) smudges.Remove(collider.gameObject);
     }
 
     public void OnMoveHorizontal(CallbackContext context)
@@ -67,8 +60,12 @@ public class Player : MonoBehaviour
         playerMove = new Vector2(playerMove.x, context.ReadValue<float>());
     }
 
-    public void OnInteract(CallbackContext context)
+    public void OnClean(CallbackContext context)
     {
-        Debug.Log("Interagindo");
+        foreach (GameObject smudge in smudges)
+        {
+            smudgeManager.CreateSmudge();
+            Destroy(smudge);
+        }
     }
 }

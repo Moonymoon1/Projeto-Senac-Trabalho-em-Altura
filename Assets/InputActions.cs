@@ -46,7 +46,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""CleanSmudge"",
                     ""type"": ""Button"",
                     ""id"": ""cda862cf-9f9f-462d-9c54-5f2b67f24599"",
                     ""expectedControlType"": """",
@@ -217,7 +217,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""CleanSmudge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -228,7 +228,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""CleanSmudge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -818,7 +818,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MoveHorizontal = m_Player.FindAction("MoveHorizontal", throwIfNotFound: true);
         m_Player_MoveVertical = m_Player.FindAction("MoveVertical", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_CleanSmudge = m_Player.FindAction("CleanSmudge", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -900,14 +900,14 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_MoveHorizontal;
     private readonly InputAction m_Player_MoveVertical;
-    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_CleanSmudge;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
         public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveHorizontal => m_Wrapper.m_Player_MoveHorizontal;
         public InputAction @MoveVertical => m_Wrapper.m_Player_MoveVertical;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @CleanSmudge => m_Wrapper.m_Player_CleanSmudge;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -923,9 +923,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @MoveVertical.started += instance.OnMoveVertical;
             @MoveVertical.performed += instance.OnMoveVertical;
             @MoveVertical.canceled += instance.OnMoveVertical;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @CleanSmudge.started += instance.OnCleanSmudge;
+            @CleanSmudge.performed += instance.OnCleanSmudge;
+            @CleanSmudge.canceled += instance.OnCleanSmudge;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -936,9 +936,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @MoveVertical.started -= instance.OnMoveVertical;
             @MoveVertical.performed -= instance.OnMoveVertical;
             @MoveVertical.canceled -= instance.OnMoveVertical;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @CleanSmudge.started -= instance.OnCleanSmudge;
+            @CleanSmudge.performed -= instance.OnCleanSmudge;
+            @CleanSmudge.canceled -= instance.OnCleanSmudge;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1123,7 +1123,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnMoveHorizontal(InputAction.CallbackContext context);
         void OnMoveVertical(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnCleanSmudge(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
