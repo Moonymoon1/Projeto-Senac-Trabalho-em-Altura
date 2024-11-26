@@ -190,7 +190,7 @@
                 },
                 {
                     "name": "",
-                    "id": "4ca46f4e-65d9-4f51-a971-cfec09dc2f1b",
+                    "id": "11e6c2b0-e574-4bb9-8361-c2ac5fdabe0d",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
@@ -201,7 +201,7 @@
                 },
                 {
                     "name": "",
-                    "id": "eadbafe1-24e2-4776-aa0d-7d761c58ee48",
+                    "id": "668cd49e-dd25-40ef-9338-f136cda63c15",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",

@@ -3,24 +3,17 @@ using static UnityEngine.InputSystem.InputAction;
 using System.Collections.Generic;
 
 public class Player : MonoBehaviour
-{    [SerializeField] int playerSpeed;
+{
+    [SerializeField] int playerSpeed;
     [SerializeField] float hLim;
     [SerializeField] float VLim;
     Rigidbody2D rb;
     Vector2 playerMove;
-
-    // chamando outros scriptsVV
-
     SmudgeManager smudgeManager;
     Score score;
 
-    // nao chamando scriptoss
-    
-
     private List<GameObject> smudges = new List<GameObject>();
 
-    
-    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,7 +43,8 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.CompareTag("Smudge")) smudges.Remove(collider.gameObject);
+        if (collider.CompareTag("Smudge") && smudges.Contains(collider.gameObject))
+            smudges.Remove(collider.gameObject);
     }
 
     public void OnMoveHorizontal(CallbackContext context)
@@ -65,11 +59,10 @@ public class Player : MonoBehaviour
 
     public void OnClean(CallbackContext context)
     {
-        foreach (GameObject smudge in smudges)
-        {
-            smudgeManager.CreateSmudge();
-            Destroy(smudge);
-            score.ScoreOnePoint();
-        }
+        if (!context.performed || smudges.Count == 0) return;
+        GameObject smudge = smudges[^1];
+        smudgeManager.CreateSmudge();
+        score.ScoreOnePoint();
+        Destroy(smudge);
     }
 }
