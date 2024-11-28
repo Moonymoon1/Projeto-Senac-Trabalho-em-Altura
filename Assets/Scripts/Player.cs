@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Vector2 playerMove;
     SmudgeManager smudgeManager;
+    GameManager gameManager;
     Score score;
 
     private List<GameObject> smudges = new List<GameObject>();
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         smudgeManager = GameObject.Find("SmudgeManager").GetComponent<SmudgeManager>();
         score = GameObject.Find("ScoreManager").GetComponent<Score>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
@@ -36,7 +38,9 @@ public class Player : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("FallingObject"))
-            Debug.Log("caiu algo na minha cabeça");
+            {
+                gameManager.GameOver();
+            }
 
         if (collider.CompareTag("Smudge")) smudges.Add(collider.gameObject);
 
