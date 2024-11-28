@@ -331,6 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smudge: {fileID: 4666512956696437162, guid: 8321a5af4408e6342a5386581a56d1d0, type: 3}
+  smudgeSpawnMin: {x: -10, y: 10}
+  smudgeSpawnMax: {x: 10, y: -7}
   smudgeSprites:
   - {fileID: 21300000, guid: a3199d9bf4f008f41831b9d7746e2126, type: 3}
   - {fileID: 21300000, guid: 6a48a0fa866a13c4c9262759c52a8391, type: 3}
@@ -813,7 +815,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.33229613, g: 0.45633414, b: 0.5320754, a: 0}
+  m_BackGroundColor: {r: 0.2971698, g: 0.8501696, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1224,6 +1226,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingObject: {fileID: 3965829854572032842, guid: 0dc20f6245ee3b342a62c43e7db99a7c, type: 3}
+  spawnMin: -10
+  spawnMax: 10
 --- !u!4 &1434443898
 Transform:
   m_ObjectHideFlags: 0
