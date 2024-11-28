@@ -15,6 +15,6 @@ public class FallingObjectManager : MonoBehaviour
             Quaternion.identity
         );
         SpriteRenderer fallingObjectSprite = fallingObjectInstance.GetComponent<SpriteRenderer>();
-        // fallingObjectSprite.sprite = fallingObjectSprites[Random.Range(0, fallingObjectSprites.Length)];
+        fallingObjectSprite.sprite = fallingObjectSprites[Random.Range(0, fallingObjectSprites.Length)];
     }
 }
