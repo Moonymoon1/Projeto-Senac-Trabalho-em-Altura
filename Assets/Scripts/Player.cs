@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour
 {
     [SerializeField] int playerSpeed;
-    [SerializeField] float hLim;
-    [SerializeField] float VLim;
+    [SerializeField] private Vector2 maxLim;
+    [SerializeField] private Vector2 minLim;
     Rigidbody2D rb;
     Vector2 playerMove;
     SmudgeManager smudgeManager;
@@ -31,8 +31,11 @@ public class Player : MonoBehaviour
     void PlayerMovement()
     {
         transform.position += new Vector3(playerMove.x, playerMove.y, 0) * playerSpeed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -VLim, VLim), 0);
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -hLim, hLim), transform.position.y, 0);
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, minLim.x, maxLim.x),
+            Mathf.Clamp(transform.position.y, minLim.y, maxLim.y),
+            0
+        );
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
