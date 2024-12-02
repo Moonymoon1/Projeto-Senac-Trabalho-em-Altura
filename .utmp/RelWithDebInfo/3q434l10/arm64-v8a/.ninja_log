@@ -1,0 +1,12 @@
+# ninja log v5
+645	1460	7548642603839959	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	36d31ebce510cc4d
+307	2502	7548642613556027	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	32cbe587a365dea9
+588	2642	7548642614643775	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	dbe9d3cb72fab7bb
+518	2655	7548642616159083	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	e7094dbdeebb7139
+632	2689	7548642616487193	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	7a11c5e6d96c342c
+621	2718	7548642616431195	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	f5f60c8ef477969d
+199	2736	7548642617484697	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	875da4534e5ea6cc
+1	3307	7548642622372247	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1de221e95ceb0ddf
+1463	3387	7548642621868576	C:/Users/louie.spena/projects/Projeto-Senac-Trabalho-em-Altura/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3q434l10/obj/arm64-v8a/libswappywrapper.so	4c2ac28b334d2608
+346	3494	7548642625307665	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	9ea35708c4baa9fa
+3494	4337	7548642631870178	C:/Users/louie.spena/projects/Projeto-Senac-Trabalho-em-Altura/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3q434l10/obj/arm64-v8a/libgame.so	73163b5272c3c238
