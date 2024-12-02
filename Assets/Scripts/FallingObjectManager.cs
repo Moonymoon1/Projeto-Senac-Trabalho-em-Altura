@@ -6,7 +6,14 @@ public class FallingObjectManager : MonoBehaviour
     [SerializeField] float spawnMin;
     [SerializeField] float spawnMax;
     [SerializeField] Sprite[] fallingObjectSprites;
+    [SerializeField] AudioClip sonzinho;
+    GameManager gameManager;
 
+
+    void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     public void CreateFallingObject()
     {
         GameObject fallingObjectInstance = Instantiate(
@@ -16,5 +23,6 @@ public class FallingObjectManager : MonoBehaviour
         );
         SpriteRenderer fallingObjectSprite = fallingObjectInstance.GetComponent<SpriteRenderer>();
         fallingObjectSprite.sprite = fallingObjectSprites[Random.Range(0, fallingObjectSprites.Length)];
+        gameManager.PlaySound(sonzinho);
     }
 }

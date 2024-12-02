@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] int playerSpeed;
     [SerializeField] private Vector2 maxLim;
     [SerializeField] private Vector2 minLim;
+    [SerializeField] private AudioClip sonzinho;
     Rigidbody2D rb;
     Vector2 playerMove;
     SmudgeManager smudgeManager;
@@ -71,5 +72,6 @@ public class Player : MonoBehaviour
         smudgeManager.CreateSmudge();
         score.ScoreOnePoint();
         Destroy(smudge);
+        gameManager.PlaySound(sonzinho);
     }
 }

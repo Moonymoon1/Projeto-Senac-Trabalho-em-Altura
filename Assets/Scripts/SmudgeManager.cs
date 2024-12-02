@@ -6,9 +6,16 @@ public class SmudgeManager : MonoBehaviour
     [SerializeField] private Vector2 smudgeSpawnMin;
     [SerializeField] private Vector2 smudgeSpawnMax;
     [SerializeField] private Sprite[] smudgeSprites;
+    [SerializeField] AudioClip sonzinho;
+    GameManager gameManager;
+
+    void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     public void CreateSmudge()
     {
-        // GameObject smudgeInstance = Instantiate(smudge, new Vector3(Random.Range(-18,18), Random.Range(-11,11), 0), Quaternion.identity);
+        
         GameObject smudgeInstance = Instantiate(
             smudge,
             new Vector3(Random.Range(smudgeSpawnMin.x, smudgeSpawnMax.x),
@@ -17,5 +24,6 @@ public class SmudgeManager : MonoBehaviour
         );
         SpriteRenderer smudgeSprite = smudgeInstance.GetComponent<SpriteRenderer>();
         smudgeSprite.sprite = smudgeSprites[Random.Range(0, smudgeSprites.Length)];
+        gameManager.PlaySound(sonzinho);
     }
 }
